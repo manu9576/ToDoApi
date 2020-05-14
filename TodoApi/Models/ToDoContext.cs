@@ -2,13 +2,13 @@
 
 namespace TodoApi.Models
 {
-    public class ToDoContext : DbContext
+    public class TodoContext : DbContext
     {
-        public ToDoContext(DbContextOptions<ToDoContext> options)
+        public TodoContext(DbContextOptions<TodoContext> options)
            : base(options)
         {
         }
 
-        public DbSet<ToDoItem> TodoItems { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }

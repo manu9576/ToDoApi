@@ -9,41 +9,42 @@ namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ToDoItemsController : ControllerBase
+    public class TodoItemsController : ControllerBase
     {
-        private readonly ToDoContext _context;
+        private readonly TodoContext _context;
 
-        public ToDoItemsController(ToDoContext context)
+        public TodoItemsController(TodoContext context)
         {
             _context = context;
+
         }
 
-        // GET: api/ToDoItems
+        // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ToDoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
             return await _context.TodoItems.ToListAsync();
         }
 
-        // GET: api/ToDoItems/5
+        // GET: api/TodoItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ToDoItem>> GetToDoItem(long id)
+        public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
-            var toDoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _context.TodoItems.FindAsync(id);
 
-            if (toDoItem == null)
+            if (todoItem == null)
             {
                 return NotFound();
             }
 
-            return toDoItem;
+            return todoItem;
         }
 
-        // PUT: api/ToDoItems/5
+        // PUT: api/TodoItems/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutToDoItem(long id, ToDoItem toDoItem)
+        public async Task<IActionResult> PutTodoItem(long id, TodoItem toDoItem)
         {
             if (id != toDoItem.Id)
             {
@@ -58,7 +59,7 @@ namespace TodoApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ToDoItemExists(id))
+                if (!TodoItemExists(id))
                 {
                     return NotFound();
                 }
@@ -71,21 +72,21 @@ namespace TodoApi.Controllers
             return NoContent();
         }
 
-        // POST: api/ToDoItems
+        // POST: api/TodoItems
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ToDoItem>> PostToDoItem(ToDoItem toDoItem)
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem toDoItem)
         {
             _context.TodoItems.Add(toDoItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetToDoItem), new { id = toDoItem.Id }, toDoItem);
+            return CreatedAtAction(nameof(GetTodoItem), new { id = toDoItem.Id }, toDoItem);
         }
 
-        // DELETE: api/ToDoItems/5
+        // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ToDoItem>> DeleteToDoItem(long id)
+        public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
         {
             var toDoItem = await _context.TodoItems.FindAsync(id);
             if (toDoItem == null)
@@ -99,7 +100,7 @@ namespace TodoApi.Controllers
             return toDoItem;
         }
 
-        private bool ToDoItemExists(long id)
+        private bool TodoItemExists(long id)
         {
             return _context.TodoItems.Any(e => e.Id == id);
         }

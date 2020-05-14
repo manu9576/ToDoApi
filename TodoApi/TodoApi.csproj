@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageId>ToDoApi</PackageId>
-    <Authors>ToDoApi</Authors>
-    <Company>ToDoApi</Company>
+    <PackageId>TodoApi</PackageId>
+    <Authors>TodoApi</Authors>
+    <Company>TodoApi</Company>
   </PropertyGroup>
 
   <ItemGroup>
